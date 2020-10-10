@@ -7,6 +7,7 @@ pipeline {
                 sh '''
                        cd key-pair
                        terraform init
+                       terraform apply
                 '''            
             }
         }
