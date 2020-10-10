@@ -3,10 +3,9 @@ pipeline {
     stages {
        stage('Terraform init') {
             steps {
-                echo 'Bumping up the version!!!'                
+                echo 'Execute Terraform Code!!!'                
                 sh '''
-                       pwd
-                       ls -lthr
+                       cd key-pair
                        terraform init
                 '''            
             }
