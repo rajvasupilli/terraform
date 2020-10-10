@@ -1,6 +1,6 @@
 pipeline {
     agent any     
-
+    stages {
        stage('Terraform init') {
             steps {
                 echo 'Bumping up the version!!!'                
@@ -9,4 +9,5 @@ pipeline {
                 '''            
             }
         }
+    }
 }
