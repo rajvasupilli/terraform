@@ -75,7 +75,7 @@ variable nlb_listener_port {
 }
 
 variable nlb_listener_protocol {
-    default =  "TCP"
+    default =  "HTTP"
 }
 
 variable nlb_listener_default_action {
