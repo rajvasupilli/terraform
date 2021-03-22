@@ -19,15 +19,15 @@ variable ec2_key_name {
 }
 
 variable vpc_id {
-    default = "vpc-038b22d668e0637bc"
+    default = "vpc-0d2797005a0d7c7a4"
 }
 
 variable subnet_id {
-    default = "subnet-0fc90e8fbdd269cb2"
+    default = "subnet-0b40791b28e9b7d98"
 }
 
 variable security_group {
-    default = ["sg-0d00fb12e20406cd8"]
+    default = ["sg-0a4586d2f74406df7"]
 }
 
 variable associate_public_ip_address {
