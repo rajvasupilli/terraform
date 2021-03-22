@@ -51,7 +51,7 @@ variable tg_healthcheck_port {
 }
 
 variable tg_healthcheck_protocol {
-    default =  "TCP"
+    default =  "HTTP"
 }
 
 variable nlb_name {
