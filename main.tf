@@ -1,4 +1,15 @@
 
+terraform {
+  backend "remote" {
+    organization = "brambles"
+
+    workspaces {
+      name = "terraform"
+    }
+  }
+}
+
+
 # Create a key pair
 resource "aws_key_pair" "key" {
   key_name   = var.key_name
