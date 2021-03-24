@@ -4,7 +4,7 @@ terraform {
     organization = "brambles"
 
     workspaces {
-      name = "terraform"
+      name = "terraform-new"
     }
   }
 }
