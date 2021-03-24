@@ -1,4 +1,3 @@
-
 terraform {
   backend "remote" {
     organization = "brambles"
@@ -8,7 +7,6 @@ terraform {
     }
   }
 }
-
 
 # Create a key pair
 resource "aws_key_pair" "key" {
