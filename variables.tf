@@ -26,7 +26,6 @@ variable subnet_id {
     default = "subnet-0075423f172d97612"
 }
 
-
 variable security_group {
     default = ["sg-017222953ccb8c2bc"]
 }
