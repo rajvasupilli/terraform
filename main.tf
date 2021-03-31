@@ -1,9 +1,18 @@
 terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
+
   backend "remote" {
     organization = "brambles"
     
     workspaces {
-      name = "terraform-new"
+      name = "gh-actions-demo"
     }
   }
 }
