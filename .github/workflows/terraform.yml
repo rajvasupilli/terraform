@@ -30,7 +30,11 @@ jobs:
         credentials: ${{secrets.AUTH_TOKEN}}
         
     - name: pull-modules
-      run: git clone https://rajvasupilli:secrets.AUTH_TOKEN@github.com/rajvasupilli/terraform-modules.git
+      run: |
+        git config --local --remove-section http."https://github.com/"
+        git config --global url."https://foo:${GH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
+      env:
+        AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
