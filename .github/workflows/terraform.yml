@@ -31,7 +31,6 @@ jobs:
         
     - name: pull-modules
       run: |
-        git config --local --remove-section http."https://github.com/"
         git config --global url."https://foo:${AUTH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
         pwd
         ls -lth
