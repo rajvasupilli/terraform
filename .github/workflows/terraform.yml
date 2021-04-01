@@ -30,7 +30,7 @@ jobs:
         credentials: ${{secrets.AUTH_TOKEN}}
         
     - name: pull-modules
-      run: git clone https://raj.vasupilli@gmail.com:${{secrets.AUTH_TOKEN}}@github.com/rajvasupilli/terraform-modules.git
+      run: git clone https://rajvasupilli:secrets.AUTH_TOKEN@github.com/rajvasupilli/terraform-modules.git
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
