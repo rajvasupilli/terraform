@@ -289,11 +289,11 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: |
-        echo "${{ secrets.MODULE_SSH_KEY }}" > id_rsa
-        ssh-keyscan github.com > known_hosts
-        chmod 400 id_rsa known_hosts
+      run: 
         terraform init
+      with:
+        credentials: ${{secrets.AUTH_TOKEN}}
+         
 
     # Checks that all Terraform configuration files adhere to a canonical format
     #- name: Terraform Format
