@@ -32,16 +32,20 @@ jobs:
     - name: pull-modules
       run: |
         git config --global url."https://foo:${AUTH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
-        pwd
-        ls -lth
-      env:
-        AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+        env:
+          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: |
-        git config --local --remove-section http."https://github.com/"
-        git config --global url."https://foo:${AUTH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
+       # git config --local --remove-section http."https://github.com/"
+       # git config --global url."https://foo:${AUTH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
+        cat  ${{ secrets.MODULE_SSH_KEY }} > ~/.ssh/id_rsa.pub
+        chmod 600 ~/.ssh/id_rsa
+        echo "Host github.com" >> ~/.ssh/config
+        echo "HostName github.com" >> ~/.ssh/config
+        echo "User git" >> ~/.ssh/config
+        echo "IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
         terraform init
          
 
