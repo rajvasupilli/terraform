@@ -32,10 +32,10 @@ jobs:
     # Setup SSH Private Key
     - name: Setup SSH Keys
       run: | 
-         'echo "$MODULE_SSH_KEY" > /home/runner/.ssh/id_rsa'
-         'chmod 600 /home/runner/.ssh/id_rsa'
-          ssh-keyscan hostname > ~/.ssh/known_hosts
-          terraform init
+         echo "$MODULE_SSH_KEY" >../github_do.key
+         chmod 600 ../github_do.key
+         ssh-keyscan hostname > ~/.ssh/known_hosts
+         terraform init
       shell: bash
       env:
         SSH_KEY: ${{ secrets.MODULE_SSH_KEY }}       
