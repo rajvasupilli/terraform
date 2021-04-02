@@ -34,6 +34,7 @@ jobs:
       run: | 
          'echo "$MODULE_SSH_KEY" > /home/runner/.ssh/id_rsa'
          'chmod 600 /home/runner/.ssh/id_rsa'
+          ssh-keyscan hostname > ~/.ssh/known_hosts
           terraform init
       shell: bash
       env:
