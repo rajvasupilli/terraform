@@ -31,9 +31,9 @@ jobs:
     # Setup SSH Private Key
     - name: Setup SSH Keys
       run: |
-        touch ~/.ssh/id_rsa
-        cat "${{ secrets.MODULE_SSH_KEY }}" >> ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        sudo touch ~/.ssh/id_rsa
+        sudo cat "${{ secrets.MODULE_SSH_KEY }}" >> ~/.ssh/id_rsa
+        sudo chmod 600 ~/.ssh/id_rsa
         echo "Host github.com" >> ~/.ssh/config
         echo "HostName github.com" >> ~/.ssh/config
         echo "User git" >> ~/.ssh/config
