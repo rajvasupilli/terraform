@@ -35,7 +35,7 @@ jobs:
          mkdir -p ~/.ssh
          touch ~/.ssh/known_hosts
          cat > ../github_do.key
-         'echo "$MODULE_SSH_KEY" > ../github_do.key'
+         'echo "$MODULE_SSH_KEY"'
          chmod 600 ../github_do.key
          ssh-keyscan hostname > ~/.ssh/known_hosts
          terraform init
