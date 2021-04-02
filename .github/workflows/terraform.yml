@@ -21,6 +21,7 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
+      
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
@@ -28,18 +29,13 @@ jobs:
       with: 
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    # Setup SSH Private Key
-    - name: Setup SSH Keys
-      run: | 
-         'echo "$MODULE_SSH_KEY" > /home/runner/.ssh/id_rsa'
-         'chmod 600 /home/runner/.ssh/id_rsa'
-      shell: bash
-      env:
-        SSH_KEY: ${{ secrets.MODULE_SSH_KEY }}       
-       
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run:  terraform init
+      uses: ./
+      with:
+         ssh-private-key: ${{ secrets.MODULE_SSH_KEY }} 
+    
+    - run:  terraform init
         
     # Generates an execution plan for Terraform
     - name: Terraform Plan
