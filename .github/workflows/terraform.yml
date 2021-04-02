@@ -25,15 +25,8 @@ jobs:
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
-      with: |
-        #cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      with: 
         cli_config_credentials_token: ${{ secrets.AUTH_TOKEN }}
-        
-#    - name: pull-modules
-#      run: |
-#        git config --global url."https://foo:${AUTH_TOKEN}@github.com/rajvasupilli/terraform-modules".insteadOf "https://github.com/rajvasupilli/terraform-modules"
-#        env:
-#          AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
