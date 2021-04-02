@@ -37,7 +37,6 @@ jobs:
          echo "$SSH_KEY"
          echo "$SSH_KEY" > ../github_do.key
          chmod 600 ../github_do.key
-         ssh-keyscan hostname >> ~/.ssh/known_hosts
          terraform init
       shell: bash
       env:
