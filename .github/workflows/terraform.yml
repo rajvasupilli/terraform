@@ -37,10 +37,7 @@ jobs:
         echo "HostName github.com" >> ~/.ssh/config
         echo "User git" >> ~/.ssh/config
         echo "IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-        ls -lthr ~/.ssh/
-        cat ~/.ssh/id_rsa.pub
-        cat ~/.ssh/id_rsa
-        
+             
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run:  terraform init
