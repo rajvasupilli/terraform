@@ -15,6 +15,6 @@ jobs:
                     ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
             -   run: |
                       mkdir -p ~/terraform-modules/                      
-                      git clone https://github.com/rajvasupilli/terraform-modules.git ~/terraform-modules
+                      git clone https://github.com/rajvasupilli/terraform-modules.git terraform-modules
                       terraform init
                      
