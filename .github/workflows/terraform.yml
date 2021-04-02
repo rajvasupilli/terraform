@@ -34,6 +34,7 @@ jobs:
         ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
         ls -lthr ~/.ssh/
         cat ~/.ssh/id_rsa.pub
+        cat ~/.ssh/id_rsa
         terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
