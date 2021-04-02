@@ -32,6 +32,11 @@ jobs:
     - name: Setup SSH Keys
       run: |
         echo ${{ secrets.MODULE_SSH_KEY }} >> ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        echo "Host github.com" >> ~/.ssh/config
+        echo "HostName github.com" >> ~/.ssh/config
+        echo "User git" >> ~/.ssh/config
+        echo "IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
         ls -lthr ~/.ssh/
         cat ~/.ssh/id_rsa.pub
         cat ~/.ssh/id_rsa
