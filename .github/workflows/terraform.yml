@@ -31,6 +31,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: |
+        ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
         ls -lthr ~/.ssh/
         cat ~/.ssh/id_rsa.pub
         terraform init
