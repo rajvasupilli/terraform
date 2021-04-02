@@ -16,7 +16,8 @@ jobs:
             -   run: |
                     for repo in `grep .git main.tf | awk -F "=" '{ print $2 }'`
                      do 
-                       git clone $repo test-1-http
+                      echo $repo
+                      # git clone $repo test-1-http
                        #cd test-1-http
-                       terraform init
+                       #terraform init
                      done
