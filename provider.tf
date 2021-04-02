@@ -1,6 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIAW63GZODCBI4MADE5"
-  secret_key = "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"
+  access_key = "AKIAQRLV6LFJEDSHJPKU"
+  secret_key = "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"
 }
