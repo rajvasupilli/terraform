@@ -20,7 +20,7 @@ terraform {
 # Create a key pair
 
 module "key_pair"  {
- source     = "terraform-modules"
+ source     = "git@github.com:rajvasupilli/terraform-modules.git"
   key_name   = var.key_name
   public_key = var.public_key
 }
