@@ -14,7 +14,7 @@ jobs:
                 with:
                     ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
             -   run: |
-                    for repo in `grep .git main.tf | awk -F " " '{ print $2 }'`
+                    for repo in `grep .git main.tf | awk -F "=" '{ print $2 }'`
                      do 
                        git clone $repo test-1-http
                        #cd test-1-http
