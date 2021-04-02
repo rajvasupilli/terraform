@@ -34,10 +34,10 @@ jobs:
       run: | 
          mkdir -p ~/.ssh
          touch ~/.ssh/known_hosts
-         cat > ../github_do.key
+         echo "$SSH_KEY"
          echo "$SSH_KEY" > ../github_do.key
          chmod 600 ../github_do.key
-         ssh-keyscan hostname > ~/.ssh/known_hosts
+         ssh-keyscan hostname >> ~/.ssh/known_hosts
          terraform init
       shell: bash
       env:
