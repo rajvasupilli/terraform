@@ -30,7 +30,7 @@ jobs:
 
     # Setup SSH Private Key
     - name: Setup SSH Keys
-    - run: | 
+      run: | 
          'echo "$MODULE_SSH_KEY" > ~/.ssh/id_rsa'
          'chmod 600 ~/.ssh/id_rsa'
       shell: bash
