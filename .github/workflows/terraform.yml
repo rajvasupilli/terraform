@@ -32,6 +32,8 @@ jobs:
     # Setup SSH Private Key
     - name: Setup SSH Keys
       run: | 
+         mkdir -p ~/.ssh
+         touch ~/.ssh/known_hosts
          echo "$MODULE_SSH_KEY" >../github_do.key
          chmod 600 ../github_do.key
          ssh-keyscan hostname > ~/.ssh/known_hosts
