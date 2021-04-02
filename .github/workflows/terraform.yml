@@ -26,12 +26,12 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with: 
-        cli_config_credentials_token: ${{ secrets.AUTH_TOKEN }}
+        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     # Setup SSH Private Key
     - name: Setup SSH Keys
       run: |
-        echo ${{ secrets.MODULE_SSH_KEY }} >> ~/.ssh/id_rsa
+        cat ${{ secrets.MODULE_SSH_KEY }} >> ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         echo "Host github.com" >> ~/.ssh/config
         echo "HostName github.com" >> ~/.ssh/config
