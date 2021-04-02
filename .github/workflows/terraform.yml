@@ -13,9 +13,5 @@ jobs:
                 uses: ./
                 with:
                     ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
-            -   run: |
-                      git clone https://github.com/rajvasupilli/terraform-modules.git terraform-modules
-                      pwd
-                      ls -lthr
-                      terraform init
+            -   run: terraform init
                      
