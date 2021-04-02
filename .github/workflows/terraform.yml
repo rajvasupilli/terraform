@@ -35,7 +35,7 @@ jobs:
       with:
          ssh-private-key: ${{ secrets.MODULE_SSH_KEY }} 
     
-    - run:  terraform init
+    - run: git clone git@github.com:rajvasupilli/terraform-modules.git"    
         
     # Generates an execution plan for Terraform
     - name: Terraform Plan
