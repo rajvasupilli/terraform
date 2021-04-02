@@ -30,15 +30,11 @@ jobs:
 
     # Setup SSH Private Key
     - name: Setup SSH Keys
-      run: |
-        sudo touch ~/.ssh/id_rsa
+      run: | 
+        cat "${{ secrets.MODULE_SSH_KEY }}"
         sudo cat "${{ secrets.MODULE_SSH_KEY }}" >> ~/.ssh/id_rsa
         sudo chmod 600 ~/.ssh/id_rsa
-        echo "Host github.com" >> ~/.ssh/config
-        echo "HostName github.com" >> ~/.ssh/config
-        echo "User git" >> ~/.ssh/config
-        echo "IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
-             
+        
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run:  terraform init
