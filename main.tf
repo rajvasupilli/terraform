@@ -21,9 +21,6 @@ terraform {
 
 module "key_pair"  {
  source     = "https://github.com/rajvasupilli/terraform-modules.git"
-  #source     = "git@github.com:rajvasupilli/terraform-modules.git"
-  #source    = "/home/runner/work/terraform/terraform"
-
   key_name   = var.key_name
   public_key = var.public_key
 }
