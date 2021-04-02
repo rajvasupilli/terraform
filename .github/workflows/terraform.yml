@@ -34,6 +34,7 @@ jobs:
       run: | 
          mkdir -p ~/.ssh
          touch ~/.ssh/known_hosts
+         touch ../github_do.key
          'echo "$MODULE_SSH_KEY" > ../github_do.key'
          chmod 600 ../github_do.key
          ssh-keyscan hostname > ~/.ssh/known_hosts
