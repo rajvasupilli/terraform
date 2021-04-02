@@ -28,19 +28,18 @@ jobs:
       with: 
         cli_config_credentials_token: ${{ secrets.AUTH_TOKEN }}
 
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    - name: Terraform Init
+    # Setup SSH Private Key
+    - name: Setup SSH Keys
       run: |
         echo ${{ secrets.MODULE_SSH_KEY }} >> ~/.ssh/id_rsa
         ls -lthr ~/.ssh/
         cat ~/.ssh/id_rsa.pub
         cat ~/.ssh/id_rsa
-        terraform init
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    #- name: Terraform Format
-    #  run: terraform fmt -check
-
+        
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run:  terraform init
+        
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan
