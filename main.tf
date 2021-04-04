@@ -12,7 +12,7 @@ terraform {
     organization = "brambles"
     
     workspaces {
-      name = "testing"
+      name = "gh-actions-demo"
     }
   }
 }
