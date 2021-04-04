@@ -37,16 +37,10 @@ jobs:
            ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
     -   run: |
           git clone https://github.com/rajvasupilli/terraform-modules.git terraform-modules
-          ls -ltrh ./terraform-modules
-          pwd
-          ls -lthr 
-          cat main.tf
-          rm -rf .terraform
-          terraform init
        
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    #-  name: Terraform Init
-    #   run:  terraform init
+    -  name: Terraform Init
+       run:  terraform init
         
     # Generates an execution plan for Terraform
     - name: Terraform Plan
