@@ -39,6 +39,7 @@ jobs:
           git clone https://github.com/rajvasupilli/terraform-modules.git ../terraform-modules
           pwd
           ls -lthr
+          cat main.tf
           terraform init && terraform plan
           if: github.ref == 'refs/heads/master' && github.event_name == 'push'
           terraform apply --auto-approve
