@@ -37,6 +37,7 @@ jobs:
            ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
     -   run: |
           git clone https://github.com/rajvasupilli/terraform-modules.git ../terraform-modules
+          ls -ltrh ../
           pwd
           ls -lthr
           cat main.tf
