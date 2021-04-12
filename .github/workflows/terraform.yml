@@ -1,14 +1,16 @@
-name: 'Terraform'
+name: "Terraform"
 
 on:
   push:
     branches:
-    - master
+      - sandbox
+    path: 
+      - terraform/sandbox/**
   pull_request:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: "Terraform"
     runs-on: ubuntu-latest
     environment: production
 
@@ -18,39 +20,65 @@ jobs:
         shell: bash
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v2
-      
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with: 
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
-    # Setup SSH Private Key
-    -   uses: actions/checkout@v2
-    -   name: Setup key
-        uses: ./
+      # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
         with:
-           ssh-private-key: ${{ secrets.MODULE_SSH_KEY }}
-    -   run: |
-          git clone https://github.com/rajvasupilli/terraform-modules.git terraform-modules
-       
-    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
-    -  name: Terraform Init
-       run:  terraform init
-        
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: |
-        find . -type l
-        terraform plan
+          terraform_version: 0.14.9
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      # On push to master, build or change infrastructure according to Terraform configuration files
-      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
-    
-    - name: Terraform Apply 
-      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-      run: terraform apply -auto-approve
+      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Terraform Init
+        id: init
+        run: |
+          eval `ssh-agent`
+          mkdir ~/.ssh
+          echo "${{ secrets.MODULE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 0600 ~/.ssh/id_rsa
+          ssh-add -k ~/.ssh/id_rsa
+          cat /home/runner/.terraformrc
+          terraform -chdir=terraform/sandbox init -upgrade
+      # Generates an execution plan for Terraform
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: |
+          terraform -chdir=terraform/sandbox plan -no-color
+        continue-on-error: true
+
+      - name: Update Pull Request
+        uses: actions/github-script@0.9.0
+        if: github.event_name == 'pull_request'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            <details><summary>Show Plan</summary>
+            
+            \`\`\`${process.env.PLAN}\`\`\`
+            </details>
+            Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\``;
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+        # On push to master, build or change infrastructure according to Terraform configuration files
+        # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+
+    # - name: Terraform Apply
+    #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    #   run: |
+    #     cd terraform/sandbox/
+    #     terraform apply -auto-approve
