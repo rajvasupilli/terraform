@@ -7,6 +7,11 @@ on:
     paths: 
       - terra/sandbox/**
   pull_request:
+    branches:
+      - sandbox
+    paths: 
+      - terra/sandbox/**
+    
 
 jobs:
   terraform:
