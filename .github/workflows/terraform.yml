@@ -4,10 +4,8 @@ on:
   push:
     branches:
       - qa
-    path: 
+    paths: 
       - terra/sandbox/**
-  pull_request:
-
 jobs:
   terraform:
     name: "Terraform"
