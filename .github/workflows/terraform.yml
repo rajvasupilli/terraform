@@ -2,11 +2,7 @@ name: "Terraform"
 
 on:
   push:
-    branches:
-    - master
-    paths:
-    - terra/sandbox/**
-    
+      
   pull_request:
     branches:
     - master
