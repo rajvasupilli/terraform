@@ -1,7 +1,7 @@
 resource "aws_dynamodb_table" "basic-dynamodb-table" {
   name         = "GameScor"
   billing_mode    = "PROVISIONED"
-  read_capacity     = var.read_capacity
+  read_capacity     = 120
   write_capacity = 10
   hash_key       = "UserId"
   range_key      = "GameTitle"
