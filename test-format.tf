@@ -18,7 +18,7 @@ resource "aws_dynamodb_table" "basic-dynamodb-table" {
   }
 
   attribute {
-    name   = " TopScore"
+    name   = "TopScore"
     type              = "N"
   }
 
