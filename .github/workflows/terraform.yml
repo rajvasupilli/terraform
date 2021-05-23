@@ -107,7 +107,7 @@ jobs:
           </details>
           *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
           github.issues.createComment({            
-            issue_number: context.issue_number,
+            issue_number: null,
             owner: context.repo.owner,
             repo: context.repo.repo,
             body: output
