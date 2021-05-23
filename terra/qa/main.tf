@@ -10,7 +10,7 @@ terraform {
 
   backend "remote" {
     organization = "brambles"
-    
+
     workspaces {
       name = "gh-actions-demo"
     }
@@ -19,8 +19,8 @@ terraform {
 
 # Create a key pair
 
-module "key_pair"  {
- source     = "./terraform-modules"
+module "key_pair" {
+  source     = "./terraform-modules"
   key_name   = var.key_name
   public_key = var.public_key
 }
@@ -29,12 +29,12 @@ module "key_pair"  {
 
 #resource "aws_lb" "lb" {
 #  name               = var.nlb_name
- # internal           = var.nlb_internal
-  #load_balancer_type = var.nlb_load_balancer_type
-  #subnets            = [var.subnet_id]
+# internal           = var.nlb_internal
+#load_balancer_type = var.nlb_load_balancer_type
+#subnets            = [var.subnet_id]
 
-  #tags = {
-   # Named = "var.nlb_tag_name"
- # }
+#tags = {
+# Named = "var.nlb_tag_name"
+# }
 #}
 

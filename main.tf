@@ -10,7 +10,7 @@ terraform {
 
   backend "remote" {
     organization = "brambles"
-    
+
     workspaces {
       name = "gh-actions-demo"
     }
@@ -25,9 +25,9 @@ terraform {
 # #   public_key = var.public_key
 # # }
 
-resource "aws_key_pair" "key"      {
-  key_name   =     var.key_name
-  public_key            = var.public_key
+resource "aws_key_pair" "key" {
+  key_name   = var.key_name
+  public_key = var.public_key
 }
 
 # # Create a Network Load Balancer
