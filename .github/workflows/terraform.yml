@@ -29,7 +29,7 @@ jobs:
     - name: Terraform Fmt
       id: fmt
       run: terraform fmt -check -diff
-      #continue-on-error: true
+      continue-on-error: true
 
     - name: Terraform Init
       id: init
